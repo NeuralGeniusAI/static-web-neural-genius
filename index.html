@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web de Ejemplo</title>
     <style>
         body {
@@ -10,55 +11,157 @@
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             min-height: 100vh;
         }
+
         .navbar {
             background-color: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
         }
+
         .navbar a {
             color: #fff;
             text-decoration: none;
             margin: 0 15px;
         }
+
         .content {
             flex: 1;
             padding: 2rem;
             text-align: center;
         }
+
         .footer {
             background-color: #333;
             color: #fff;
             text-align: center;
             padding: 1rem;
         }
+
         @media (max-width: 600px) {
-            .navbar, .footer {
+
+            .navbar,
+            .footer {
                 padding: 0.5rem;
             }
         }
-        .MuiStack-root.chaindesk-chatbox-standard-j7qwjs{
+
+        .MuiStack-root.chaindesk-chatbox-standard-j7qwjs {
             display: none !important;
         }
 
-        .MuiChip-label.MuiChip-labelSm.chaindesk-chatbox-standard-tymi7a{
+        .MuiChip-label.MuiChip-labelSm.chaindesk-chatbox-standard-tymi7a {
             display: none !important;
         }
 
+        .containerPreguntas {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .chat-body {
+            overflow: hidden;
+        }
+
+        .pregunta {
+            background-color: #f5eaff;
+            color: #4b0082;
+            padding: 10px 15px;
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        .pregunta:hover {
+            cursor: pointer;
+            background-color: #dcb6ff;
+            transition: all ease-in-out 0.25s;
+        }
     </style>
-  
-<script type="module">
-  import Chatbox from 'https://cdn.jsdelivr.net/npm/@chaindesk/embeds@latest/dist/chatbox/index.js';
 
-  Chatbox.initStandard({
-    agentId: 'cm5ojgx6j002xyabhpyrjl939',
-  });
-</script>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+        import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
 
-<chaindesk-chatbox-standard style="width: 100%; height: 750px" />
+        createChat({
+            webhookUrl:
+                "https://neuralgeniusai.com/webhook/c89e2356-7097-42c6-bd64-472372b5633a/chat",
+
+            initialMessages: [
+                "Hola, soy NeuralBot, tú asistente virtual!",
+                "En que puedo ayudarte?",
+            ],
+            i18n: {
+                en: {
+                    title: "Tu asistente virtual",
+                    subtitle: "Empezá un chat. Estamos acá para ayudarte 24/7.",
+                    footer: "",
+                    getStarted: "Nueva conversación",
+                    inputPlaceholder: "Escribe tu respuesta..",
+                },
+            },
+        });
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     console.log("DOM cargado");
+
+        //     function esperarTextareaYAgregarEventos() {
+        //         const chatInput = document.querySelector(".chat-inputs textarea");
+
+        //         if (!chatInput) {
+        //             console.warn("Esperando textarea...");
+        //             setTimeout(esperarTextareaYAgregarEventos, 500);
+        //             return;
+        //         }
+
+        //         console.log("Textarea encontrado:", chatInput);
+
+        //         const chatBody = document.querySelector(".chat-body");
+        //         if (!chatBody) {
+        //             console.error("No se encontró .chat-body");
+        //             return;
+        //         }
+
+        //         const preguntas = [
+        //             "¿Qué servicios ofrecen?",
+        //             "¿Cómo puedo contactarme con un asesor?" 
+        //         ];
+
+        //         const container = document.createElement("div");
+        //         container.classList.add("containerPreguntas");
+
+        //         preguntas.forEach((texto) => {
+        //             const preguntaElemento = document.createElement("div");
+        //             preguntaElemento.classList.add("pregunta");
+        //             preguntaElemento.textContent = texto;
+
+        //             preguntaElemento.addEventListener("click", function () {
+        //                 console.log("Clic en pregunta:", texto);
+        //                 chatInput.value = texto;
+        //             });
+
+        //             container.appendChild(preguntaElemento);
+        //         });
+
+        //         chatBody.appendChild(container);
+        //     }
+
+        //     esperarTextareaYAgregarEventos();
+        // });
+    </script>
+
+    <chaindesk-chatbox-standard style="width: 100%; height: 750px" />
 </head>
+
 <body>
     <nav class="navbar">
         <a href="#">Inicio</a>
@@ -73,4 +176,5 @@
         <p>&copy; 2024 Web de Ejemplo. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>
